@@ -44,6 +44,13 @@
             </a>
         </li>
 
+        <li class="sidebar-item">
+            <a href="{{ route('logout') }}" class='sidebar-link'>
+                <i class="bi bi-box-arrow-left text-danger"></i>
+                <span class="text-danger">Logout</span>
+            </a>
+        </li>
+
 
     </ul>
 </div>

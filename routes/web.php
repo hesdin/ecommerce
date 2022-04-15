@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,22 +17,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return redirect()->route('login');
 });
 
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-Route::get('/customer', [AdminController::class, 'customer'])->name('customer');
-Route::get('/product', [AdminController::class, 'product'])->name('product');
-Route::post('/product', [AdminController::class, 'storeProduct'])->name('store.product');
-Route::get('/product/{id}', [AdminController::class, 'showProduct'])->name('show.product');
-Route::put('/product/{id}', [AdminController::class, 'updateProduct'])->name('update.product');
-Route::delete('/product/{id}', [AdminController::class, 'destroyProduct'])->name('destroy.product');
+Route::middleware(['guest:admin'])->group(function () {
+    Route::get('/login', [AuthController::class, 'loginPage']);
+    Route::post('/login', [AuthController::class, 'loginCheck'])->name('login');
+});
 
-// ORDERAN
-Route::get('/orderan', [AdminController::class, 'orderan'])->name('orderan');
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/customer', [AdminController::class, 'customer'])->name('customer');
+    Route::get('/product', [AdminController::class, 'product'])->name('product');
+    Route::post('/product', [AdminController::class, 'storeProduct'])->name('store.product');
+    Route::get('/product/{id}', [AdminController::class, 'showProduct'])->name('show.product');
+    Route::put('/product/{id}', [AdminController::class, 'updateProduct'])->name('update.product');
+    Route::delete('/product/{id}', [AdminController::class, 'destroyProduct'])->name('destroy.product');
 
-// ADMIN
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    // ORDERAN
+    Route::get('/orderan', [AdminController::class, 'orderan'])->name('orderan');
 
-// LAPORAN
-Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
+    // ADMIN
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+
+    // LAPORAN
+    Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
