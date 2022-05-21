@@ -33,7 +33,7 @@
                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z">
                     </path>
                 </svg>
-                <span class="align-middle">Tambah Product</span>
+                <span class="align-middle"> Tambah Product</span>
 
             </button>
 
@@ -170,7 +170,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="first-name-vertical">Harga</label>
-                                                <input type="number" id="#" class="form-control" name="harga" required>
+                                                <input type="text" id="harga" class="form-control" name="harga" required>
                                             </div>
                                         </div>
                                     </div>
@@ -210,13 +210,17 @@
 
     <script>
         /* Harga Rupiah */
-        var dengan_rupiah = document.getElementById('harga');
-        dengan_rupiah.addEventListener('keyup', function(e) {
-            dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
-        });
+        // var dengan_rupiah = document.getElementById('harga');
+        // dengan_rupiah.addEventListener('keyup change', function(e) {
+        //     dengan_rupiah.value = formatRupiah(this.value);
+        // });
+
+        $('#harga').on('keyup', function(e) {
+            this.value = formatRupiah(this.value);
+        })
 
         /* Fungsi */
-        function formatRupiah(angka, prefix) {
+        function formatRupiah(angka) {
             var number_string = angka.replace(/[^,\d]/g, '').toString(),
                 split = number_string.split(','),
                 sisa = split[0].length % 3,
@@ -229,7 +233,7 @@
             }
 
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+            return rupiah;
         }
 
         // Clear Form

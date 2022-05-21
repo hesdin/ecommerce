@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Str;
 
 class AdminController extends Controller
 {
@@ -14,7 +16,9 @@ class AdminController extends Controller
     }
     public function customer()
     {
-        return view('customer');
+        $user = User::all();
+
+        return view('customer', ['data' => $user]);
     }
     public function product()
     {
@@ -27,16 +31,17 @@ class AdminController extends Controller
     {
         $product = new Products();
 
+
         $product->nama_produk = $req->nama_produk;
         $product->tipe_produk = $req->tipe_produk;
         $product->deskripsi = $req->deskripsi;
         $product->stok = $req->stok;
-        $product->harga = $req->harga;
+        $product->harga = str_replace('.', '', $req->harga);
 
         if ($req->file('img')) {
             $file = $req->file('img');
-            $fileName = date('mY') . '-' . $file->getClientOriginalName();
-            $file->move(public_path('img'), $fileName);
+            $fileName = date('mY') . '-' . Str::random(9) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('img/p/'), $fileName);
             $product->img = $fileName;
         }
 
@@ -60,16 +65,16 @@ class AdminController extends Controller
         $product->tipe_produk = $req->tipe_produk;
         $product->deskripsi = $req->deskripsi;
         $product->stok = $req->stok;
-        $product->harga = $req->harga;
+        $product->harga = str_replace('.', '', $req->harga);
 
         if ($req->hasFile('img')) {
-            $destination = public_path('img/' . $product->img);
+            $destination = public_path('img/p/' . $product->img);
             if (File::exists($destination)) {
                 File::delete($destination);
             }
 
             $file = $req->file('img');
-            $fileName = date('mY') . '-' . $file->getClientOriginalName();
+            $fileName = date('mY') . '-' . Str::random(9) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('img'), $fileName);
             $product->img = $fileName;
         }
@@ -83,7 +88,7 @@ class AdminController extends Controller
     {
         $product = Products::findOrFail($id);
 
-        $imgPath = public_path('img/' . $product->img);
+        $imgPath = public_path('img/p/' . $product->img);
         File::delete($imgPath);
 
         $product->delete();

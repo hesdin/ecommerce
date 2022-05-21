@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label for="contact-info-vertical">Gambar Produk</label><br>
                                             <div class="col-4 pb-2">
-                                                <img src="{{ asset('img/' . $product->img) }}" class="img-thumbnail"
+                                                <img src="{{ asset('img/p/' . $product->img) }}" class="img-thumbnail"
                                                     alt="...">
                                             </div>
                                             <input class="form-control" type="file" id="formFile" name="img">
