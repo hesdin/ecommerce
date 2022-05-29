@@ -29,5 +29,5 @@ Route::group(['middleware' => 'users'], function() {
         ], 200);
     });
 
-    Route::get('/products', [UserController::class, 'products']);
 });
+Route::get('/products', [UserController::class, 'products']);

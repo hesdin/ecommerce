@@ -28,6 +28,7 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/customer', [AdminController::class, 'customer'])->name('customer');
+    Route::delete('/customer/{id}', [AdminController::class, 'deleteCustomer'])->name('delete.customer');
     Route::get('/product', [AdminController::class, 'product'])->name('product');
     Route::post('/product', [AdminController::class, 'storeProduct'])->name('store.product');
     Route::get('/product/{id}', [AdminController::class, 'showProduct'])->name('show.product');

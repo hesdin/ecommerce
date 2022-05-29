@@ -39,7 +39,7 @@
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" class="form-control form-control" placeholder="Email" name="email"
-                                required>
+                                required autofocus>
                             <div class="form-control-icon">
                                 <i class="bi bi-envelope"></i>
                             </div>

@@ -40,75 +40,41 @@
 
         </div>
         <div class="card-body">
-            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                <div class="dataTable-top">
-                    <div class="dataTable-dropdown"><select class="dataTable-selector form-select">
-                            <option value="5">5</option>
-                            <option value="10" selected="">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                            <option value="25">25</option>
-                        </select><label>entries per page</label></div>
-                    <div class="dataTable-search"><input class="dataTable-input" placeholder="Search..." type="text"></div>
-                </div>
-                <div class="dataTable-container">
-                    <table class="table dataTable-table" id="table1">
-                        <thead>
-                            <tr>
-                                <th data-sortable="" style="width: 35%;"><a href="#" class="dataTable-sorter">Nama
-                                        Produk</a>
-                                </th>
-                                <th data-sortable="" style="width: 30%;"><a href="#" class="dataTable-sorter">Tipe
-                                        Produk</a>
-                                </th>
-                                <th data-sortable="" style="width: 15%;"><a href="#" class="dataTable-sorter">Harga</a>
-                                </th>
-                                <th data-sortable="" style="width: 10%;"><a href="#" class="dataTable-sorter">Stok</a>
-                                </th>
-                                <th data-sortable="" style="width: 10%;"><a href="#" class="dataTable-sorter">Aksi</a>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($products as $product)
-                                <tr>
-                                    <td>{{ $product->nama_produk }}</td>
-                                    <td>{{ $product->tipe_produk }}</td>
-                                    <td>@currency($product->harga)</td>
-                                    <td>{{ $product->stok }}</td>
-                                    <td>
-                                        <span><a href="{{ route('show.product', $product->id) }}"><i
-                                                    class="bi bi-pencil-square text-primary"></i></a></span>
-                                        <span>
-                                            <a href="{{ route('destroy.product', $product->id) }}"
-                                                onclick="event.preventDefault(); document.getElementById('destroyProduct{{ $product->id }}').submit();">
-                                                <i class="bi bi-trash ms-2 text-danger"></i>
-                                            </a>
+            <table class="table" id="table1">
+                <thead>
+                    <th>Nama Produk</th>
+                    <th>Tipe Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->nama_produk }}</td>
+                            <td>{{ $product->tipe_produk }}</td>
+                            <td>@currency($product->harga)</td>
+                            <td>{{ $product->stok }}</td>
+                            <td>
+                                <span><a href="{{ route('show.product', $product->id) }}"><i
+                                            class="bi bi-pencil-square text-primary"></i></a></span>
+                                <span>
+                                    <a href="{{ route('destroy.product', $product->id) }}"
+                                        onclick="event.preventDefault(); document.getElementById('destroyProduct{{ $product->id }}').submit();">
+                                        <i class="bi bi-trash ms-2 text-danger"></i>
+                                    </a>
 
-                                            <form action="{{ route('destroy.product', $product->id) }}" method="POST"
-                                                class="d-none" id="destroyProduct{{ $product->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </span>
-                                    </td>
-                                </tr>
-                            @empty
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-                <div class="dataTable-bottom">
-                    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                    <ul class="pagination pagination-primary float-end dataTable-pagination">
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                    </ul>
-                </div>
-            </div>
+                                    <form action="{{ route('destroy.product', $product->id) }}" method="POST"
+                                        class="d-none" id="destroyProduct{{ $product->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </span>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 

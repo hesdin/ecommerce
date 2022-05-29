@@ -5,10 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cart extends Model
+class Favorite extends Model
 {
-    protected $table = 'cart';
-
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');
@@ -16,6 +14,6 @@ class Cart extends Model
 
     public function item()
     {
-        return $this->hasMany(CartItem::class, 'cart_id', 'id');
+        return $this->hasMany(Products::class, 'id', 'product_id');
     }
 }

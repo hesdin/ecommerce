@@ -20,6 +20,23 @@ class AdminController extends Controller
 
         return view('customer', ['data' => $user]);
     }
+
+    public function deleteCustomer($id)
+    {
+        $user = User::find($id);
+
+        $nama = $user->name;
+
+        if ($user->pict != 'default.png') {
+            $destination = public_path('img/u/' . $user->pict);
+            File::delete($destination);
+        }
+
+        $user->delete();
+
+        return redirect()->route('customer')->with('success', 'Customer '. $nama .' berhasil dihapus');
+    }
+
     public function product()
     {
         $products = Products::all();
