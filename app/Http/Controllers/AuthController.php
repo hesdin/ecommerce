@@ -59,4 +59,9 @@ class AuthController extends Controller
         }
 
     }
+
+    public function userLogout(Request $req)
+    {
+
+    }
 }

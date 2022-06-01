@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -116,7 +117,25 @@ class AdminController extends Controller
     // ORDERAN
     public function orderan()
     {
-        return view('orderan');
+        $orders = Order::orderBy('created_at', "DESC")->get();
+        return view('orderan', ['daftarOrderan' => $orders]);
+    }
+
+    public function orderanDetails($id)
+    {
+        $order = Order::find($id);
+        return view('orderan-details', ['data' => $order]);
+    }
+
+    public function orderanUpdate(Request $req, $id)
+    {
+        $order = Order::find($id);
+
+        // $order->status = $req->status;
+
+        $order->save();
+
+        return redirect()->route('orderan');
     }
 
     // ADMIN

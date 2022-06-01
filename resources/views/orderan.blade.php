@@ -37,27 +37,19 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($data as $user)
+                    @foreach ($daftarOrderan as $orderan)
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->phone }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ Carbon\Carbon::parse($user->created_at)->isoFormat('D MMM YYYY') }}</td>
+                            <td>{{ $orderan->customer->name }}</td>
+                            <td>{{ $orderan->alamat }}</td>
+                            <td>{{ $orderan->total_harga }}</td>
+                            <td>{{ $orderan->status }}</td>
                             <td>
                                 <span>
-                                    <button class="btn btn-sm"><i class="bi bi-pencil-square text-primary"></i></button>
+                                    <button class="btn btn-sm"><i class="bi bi-arrow-right-square text-primary"></i></button>
                                 </span>
-                                <span>
-                                    <button class="btn btn-sm"><i class="bi bi-trash text-danger" onclick="hapus({{ $user->id }})"></i></button>
-                                </span>
-
-                                <form action="{{ route('delete.customer', $user->id) }}" id="deleteCustomer{{ $user->id }}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                </form>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -72,9 +64,5 @@
         let dataTable = new simpleDatatables.DataTable(table1, {
             sortable: false
         });
-
-        // function hapus(id) {
-        //     $(`#deleteCustomer${id}`).submit();
-        // }
     </script>
 @endpush

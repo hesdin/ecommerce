@@ -16,14 +16,14 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('product') ? 'active' : '' }}">
+        <li class="sidebar-item {{ request()->segment(1) == "product" ? 'active' : '' }}">
             <a href="{{ route('product') }}" class='sidebar-link'>
                 <i class="bi bi-archive-fill"></i>
                 <span>Produk</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('orderan') ? 'active' : '' }}">
+        <li class="sidebar-item {{ request()->segment(1) == "orderan" ? 'active' : '' }}">
             <a href="{{ route('orderan') }}" class='sidebar-link'>
                 <i class="bi bi-bag-check-fill"></i>
                 <span>Orderan</span>

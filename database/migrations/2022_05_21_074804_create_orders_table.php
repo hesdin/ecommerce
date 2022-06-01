@@ -19,7 +19,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('customer_id');
             $table->text('alamat_kirim');
             $table->string('no_hp');
-            $table->enum('status', ['pending', 'proses', 'dikirim']);
+            $table->enum('status', ['pending', 'proses', 'dikirim', 'batal']);
+            $table->string('total_harga');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('users')

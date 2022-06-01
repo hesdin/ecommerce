@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
 
     // ORDERAN
     Route::get('/orderan', [AdminController::class, 'orderan'])->name('orderan');
+    Route::get('/orderan/{id}', [AdminController::class, 'orderanDetails'])->name('orderan.details');
+    Route::post('/orderan/{id}', [AdminController::class, 'orderanUpdate'])->name('orderan.update');
 
     // ADMIN
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
