@@ -24,7 +24,7 @@
                         <div class="logo">
                             {{-- <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" srcset=""></a> --}}
                             <a href="">
-                                <h4>Ecommerce</h4>
+                                <h4>Toko Online Buton</h4>
                             </a>
                         </div>
                         <div class="toggler">
@@ -51,11 +51,11 @@
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
+                        <p>{{ date('Y') }} &copy; toko online buton</p>
                     </div>
                     <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
+                        <p>Dibuat <span class="text-danger"></i></span> oleh <a
+                                href="http://ahmadsaugi.com">Mahasiswa UIM</a></p>
                     </div>
                 </div>
             </footer>

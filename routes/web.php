@@ -43,5 +43,10 @@ Route::middleware(['auth:admin'])->group(function () {
     // LAPORAN
     Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
 
+    // PESAN
+    Route::get('/pesan', [AdminController::class, 'pesan'])->name('pesan');
+    Route::get('/chating', [AdminController::class, 'chating'])->name('chating');
+
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

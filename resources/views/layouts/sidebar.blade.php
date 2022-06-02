@@ -9,10 +9,10 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('customer') ? 'active' : '' }}">
-            <a href="{{ route('customer') }}" class='sidebar-link'>
-                <i class="bi bi-people-fill"></i>
-                <span>Customer</span>
+        <li class="sidebar-item {{ request()->is('orderan') ? 'active' : '' }}">
+            <a href="{{ route('orderan') }}" class='sidebar-link'>
+                <i class="bi bi-bag-check-fill"></i>
+                <span>Orderan</span>
             </a>
         </li>
 
@@ -23,31 +23,39 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('orderan') ? 'active' : '' }}">
-            <a href="{{ route('orderan') }}" class='sidebar-link'>
-                <i class="bi bi-bag-check-fill"></i>
-                <span>Orderan</span>
+        <li class="sidebar-item {{ request()->is('customer') ? 'active' : '' }}">
+            <a href="{{ route('customer') }}" class='sidebar-link'>
+                <i class="bi bi-people-fill"></i>
+                <span>Kustomer</span>
+            </a>
+        </li>
+
+        <li class="sidebar-item {{ request()->is('pesan') ? 'active' : '' }}">
+            <a href="{{ route('pesan') }}" class='sidebar-link'>
+                <i class="bi bi-chat-square-dots-fill"></i>
+                <span>Pesan</span>
             </a>
         </li>
 
         <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }}">
             <a href="{{ route('admin') }}" class='sidebar-link'>
-                <i class="bi bi-person-fill"></i>
-                <span>Admin</span>
+                <i class="bi bi-gear-fill"></i>
+                <span>Pengaturan</span>
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('laporan') ? 'active' : '' }}">
+        {{-- <li class="sidebar-item {{ request()->is('laporan') ? 'active' : '' }}">
             <a href="{{ route('laporan') }}" class='sidebar-link'>
                 <i class="bi bi-file-earmark-text-fill"></i>
                 <span>Laporan</span>
             </a>
-        </li>
+        </li> --}}
 
         <li class="sidebar-item">
             <a href="{{ route('logout') }}" class='sidebar-link'>
-                <i class="bi bi-box-arrow-left text-danger"></i>
-                <span class="text-danger">Logout</span>
+                {{-- <i class="bi bi-box-arrow-left text-danger"></i> --}}
+                <i class="bi bi-x-square-fill"></i>
+                <span>Logout</span>
             </a>
         </li>
 

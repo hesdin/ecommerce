@@ -108,4 +108,14 @@ class AdminController extends Controller
     {
         return view('laporan');
     }
+
+    public function pesan()
+    {
+        return view('pesan');
+    }
+
+    public function chating()
+    {
+        return view('chating');
+    }
 }
