@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/auth', [AuthController::class, 'userLogin']);
+Route::post('/register', [AuthController::class, 'userRegister']);
 
 Route::group(['middleware' => 'users'], function() {
     Route::get('/user', function(Request $req) {
@@ -31,3 +32,4 @@ Route::group(['middleware' => 'users'], function() {
 
 });
 Route::get('/products', [UserController::class, 'products']);
+Route::post('/cart', [UserController::class, 'addToCart']);

@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function product()
     {
-        $products = Products::all();
+        $products = Products::orderBy('tipe_produk')->orderBy('nama_produk')->get();
 
         return view('product', ['products' => $products]);
     }
