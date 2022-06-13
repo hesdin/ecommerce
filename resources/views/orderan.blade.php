@@ -42,7 +42,7 @@
                             <td>{{ $orderan->customer->name }}</td>
                             <td>{{ $orderan->alamat_kirim }}</td>
                             <td>{{ $orderan->total_harga }}</td>
-                            <td>{{ $orderan->status }}</td>
+                            <td class="{{ $orderan->status == "Selesai" ? 'text-success' : ($orderan->status == "Batal" ? 'text-danger' : '') }}">{{ $orderan->status }}</td>
                             <td>
                                 <span>
                                     <button class="btn btn-sm" onclick="document.location.href = '{{ route('orderan.details', $orderan->id) }}'"><i class="bi bi-arrow-right-square text-primary"></i></button>
