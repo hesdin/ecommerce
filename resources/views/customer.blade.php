@@ -40,7 +40,7 @@
                     @foreach ($data as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->phone }}</td>
+                            <td>0{{ $user->phone }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ Carbon\Carbon::parse($user->created_at)->isoFormat('D MMM YYYY') }}</td>
                             <td>

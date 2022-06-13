@@ -23,13 +23,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth', [AuthController::class, 'userLogin']);
 Route::post('/register', [AuthController::class, 'userRegister']);
 
-Route::group(['middleware' => 'users'], function() {
+Route::group(['middleware' => 'auth:user'], function() {
     Route::get('/user', function(Request $req) {
         return response()->json([
             'user' => $req->user()
         ], 200);
     });
+    Route::get('/products', [UserController::class, 'products']);
 
+    // cart
+    Route::get('/cart', [UserController::class, 'cart']);
+    Route::get('/count-cart', [UserController::class, 'countCart']);
+    Route::post('/cart', [UserController::class, 'addToCart']);
+    Route::post('/cart/increase', [UserController::class, 'increaseQty']);
+    Route::post('/cart/decrease', [UserController::class, 'decreaseQty']);
+    Route::delete('/cart', [UserController::class, 'deleteCartItem']);
+    Route::post('/checkout', [UserController::class, 'checkout']);;
+
+
+    Route::get('/orderan', [UserController::class, 'orderan']);
 });
-Route::get('/products', [UserController::class, 'products']);
-Route::post('/cart', [UserController::class, 'addToCart']);
