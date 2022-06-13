@@ -9,6 +9,8 @@ class Cart extends Model
 {
     protected $table = 'cart';
 
+    protected $with = ['item'];
+
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');

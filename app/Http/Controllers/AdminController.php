@@ -127,11 +127,27 @@ class AdminController extends Controller
         return view('orderan-details', ['data' => $order]);
     }
 
-    public function orderanUpdate(Request $req, $id)
+    public function orderanUpdate($id)
     {
         $order = Order::find($id);
 
-        // $order->status = $req->status;
+        switch ($order->status) {
+            case 'Pending':
+                $order->status = 'Proses';
+                break;
+
+            case 'Proses':
+                $order->status = 'Dikirim';
+                break;
+
+            case 'Dikirim':
+                $order->status = 'Selesai';
+                break;
+
+            default:
+                # code...
+                break;
+        }
 
         $order->save();
 

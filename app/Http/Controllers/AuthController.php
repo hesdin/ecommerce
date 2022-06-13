@@ -55,9 +55,13 @@ class AuthController extends Controller
         if ($u && Hash::check($req->password, $u->password)) {
             $token = $u->createToken('auth-user')->plainTextToken;
             return response()->json([
+                'user' => $u,
                 'token' => $token,
             ], 200);
         }
+        return response()->json([
+            'message' => 'Username atau Password salah',
+        ], 401);
 
     }
 

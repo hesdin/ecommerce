@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $with = ['item'];
+
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id', 'id');
