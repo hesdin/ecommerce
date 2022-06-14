@@ -166,4 +166,15 @@ class UserController extends Controller
             'orderan' => $data
         ], 200);
     }
+
+    public function orderanCancel(Request $req)
+    {
+        $data = Order::find($req->id);
+        $data->status = 'Batal';
+        $data->update();
+
+        return response()->json([
+            'message' => 'berhasil',
+        ], 200);
+    }
 }
