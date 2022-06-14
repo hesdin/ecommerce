@@ -40,7 +40,9 @@ Route::group(['middleware' => 'auth:user'], function() {
     Route::delete('/cart', [UserController::class, 'deleteCartItem']);
     Route::post('/checkout', [UserController::class, 'checkout']);;
 
-
     Route::get('/orderan', [UserController::class, 'orderan']);
     Route::put('/orderan/cancel', [UserController::class, 'orderanCancel']);
+
+    Route::get('/favorites', [UserController::class, 'favorites']);
+    Route::post('/favorite', [UserController::class, 'favoriteAction']);
 });
