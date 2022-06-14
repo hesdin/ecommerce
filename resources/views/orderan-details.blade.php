@@ -31,9 +31,19 @@
                     <td>{{ Carbon\Carbon::parse($data->created_at)->isoFormat('D MMMM YYYY') }}</td>
                 </tr>
                 <tr>
-                    <td>Total harga</td>
+                    <td>Harga total</td>
                     <td class="px-4">:</td>
                     <td>Rp. {{ number_format($data->total_harga) }}</td>
+                </tr>
+                <tr>
+                    <td>Harga Ongkir</td>
+                    <td class="px-4">:</td>
+                    <td>Rp. {{ number_format(15000) }}</td>
+                </tr>
+                <tr class="fw-bold">
+                    <td>Total belanja</td>
+                    <td class="px-4">:</td>
+                    <td>Rp. {{ number_format($data->total_harga + 15000) }}</td>
                 </tr>
             </table>
 
