@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,13 @@ class Order extends Model
     use HasFactory;
 
     protected $with = ['item'];
+
+    protected $appends = ['tanggal'];
+
+    public function getTanggalAttribute()
+    {
+        return Carbon::parse($this->created_at)->isoFormat('D MMMM YYYY');
+    }
 
     public function customer()
     {
