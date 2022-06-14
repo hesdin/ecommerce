@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Products;
@@ -178,6 +179,36 @@ class UserController extends Controller
         return response()->json([
             'message' => 'berhasil',
             'orderan' => $data
+        ], 200);
+    }
+
+    public function favorites(Request $req)
+    {
+        $favorites = Favorite::where('customer_id', $req->user()->id)->orderBy('created_at', 'DESC')->get();
+
+        return response()->json([
+            'message' => 'berhasil',
+            'favorites' => $favorites,
+        ], 200);
+    }
+
+    public function favoriteAction(Request $req)
+    {
+        $f = Favorite::where('customer_id', $req->user()->id)->where('product_id', $req->product_id)->first();
+        if ($f) {
+            $f->delete();
+        } else {
+            $f = new Favorite();
+            $f->customer_id = $req->user()->id;
+            $f->product_id = $req->product_id;
+            $f->save();
+        }
+
+        $favorites = Favorite::where('customer_id', $req->user()->id)->orderBy('created_at', 'DESC')->get();
+
+        return response()->json([
+            'message' => 'berhasil',
+            'favorites' => $favorites,
         ], 200);
     }
 }
