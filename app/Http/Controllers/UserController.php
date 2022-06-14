@@ -173,8 +173,11 @@ class UserController extends Controller
         $data->status = 'Batal';
         $data->update();
 
+        $data = Order::where('customer_id', $req->user()->id)->orderBy('created_at', 'DESC')->get();
+
         return response()->json([
             'message' => 'berhasil',
+            'orderan' => $data
         ], 200);
     }
 }
