@@ -35,7 +35,7 @@
                     @endif
                     <h3>Log in.</h3>
 
-                    <form action="{{ route('login') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST" autocomplete="off">
                         @csrf
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="email" class="form-control form-control" placeholder="Email" name="email"
