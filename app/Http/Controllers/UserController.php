@@ -85,7 +85,11 @@ class UserController extends Controller
     public function increaseQty(Request $req)
     {
         $item = CartItem::find($req->id);
-        $item->qty = $item->qty + 1;
+        if ($item->product->stok > $item->qty ) {
+            $item->qty = $item->qty + 1;
+        } else {
+            $item->qty = $item->product->stok;
+        }
         $item->save();
 
         $keranjang = Cart::where('customer_id', $req->user()->id)->first();
