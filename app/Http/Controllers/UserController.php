@@ -194,13 +194,13 @@ class UserController extends Controller
 
     public function favoriteAction(Request $req)
     {
-        $f = Favorite::where('customer_id', $req->user()->id)->where('product_id', $req->product_id)->first();
+        $f = Favorite::where('customer_id', $req->user()->id)->where('product_id', $req->id)->first();
         if ($f) {
             $f->delete();
         } else {
             $f = new Favorite();
             $f->customer_id = $req->user()->id;
-            $f->product_id = $req->product_id;
+            $f->product_id = $req->id;
             $f->save();
         }
 
