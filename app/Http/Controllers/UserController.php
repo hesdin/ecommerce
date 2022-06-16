@@ -137,7 +137,7 @@ class UserController extends Controller
         $o->customer_id = $req->user()->id;
         $o->alamat_kirim = $req->alamat_kirim;
         $o->no_hp = $req->no_hp;
-        $o->status = 'pending';
+        $o->status = 'Pending';
         $o->total_harga = $req->total_harga;
         $o->save();
 
