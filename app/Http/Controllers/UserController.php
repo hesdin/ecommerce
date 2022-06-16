@@ -48,28 +48,31 @@ class UserController extends Controller
     {
         $cart = Cart::where('customer_id', $req->user()->id)->first();
 
-        $ci = new CartItem();
-        if (!$cart) {
-            $c = new Cart();
-            $c->customer_id = $req->user()->id;
-            $c->save();
+        if (Product::find($req->product_id)->stok > 0) {
+            $ci = new CartItem();
+            if (!$cart) {
+                $c = new Cart();
+                $c->customer_id = $req->user()->id;
+                $c->save();
 
-            $ci->cart_id = $c->id;
-            $ci->product_id = $req->product_id;
-            $ci->qty = 1;
-            $ci->save();
-        } else {
-            $check = CartItem::where('product_id', $req->product_id)->where('cart_id', $cart->id)->first();
-            if ($check) {
-                $check->qty = $check->qty + 1;
-                $check->save();
-            } else {
-                $ci->cart_id = $cart->id;
+                $ci->cart_id = $c->id;
                 $ci->product_id = $req->product_id;
                 $ci->qty = 1;
                 $ci->save();
+            } else {
+                $check = CartItem::where('product_id', $req->product_id)->where('cart_id', $cart->id)->first();
+                if ($check) {
+                    $check->qty = $check->qty + 1;
+                    $check->save();
+                } else {
+                    $ci->cart_id = $cart->id;
+                    $ci->product_id = $req->product_id;
+                    $ci->qty = 1;
+                    $ci->save();
+                }
             }
         }
+
 
         $count = Cart::where('customer_id', $req->user()->id)->first()->item()->count();
 
@@ -149,6 +152,12 @@ class UserController extends Controller
             $oi->product_id = $item->product_id;
             $oi->qty = $item->qty;
             $oi->save();
+
+            $product = Product::find($item->product_id);
+            if ($product->stok > 0) {
+                $product->stok = $product->stok - $item->qty;
+                $product->update();
+            }
         }
 
         $cart->delete();
@@ -174,11 +183,17 @@ class UserController extends Controller
         $data->status = 'Batal';
         $data->update();
 
-        $data = Order::where('customer_id', $req->user()->id)->orderBy('created_at', 'DESC')->get();
+        foreach($data->item as $item) {
+            $p = Product::find($item->product_id);
+            $p->stok = $p->stok + $item->qty;
+            $p->update();
+        }
+
+        $orderan = Order::where('customer_id', $req->user()->id)->orderBy('created_at', 'DESC')->get();
 
         return response()->json([
             'message' => 'berhasil',
-            'orderan' => $data
+            'orderan' => $orderan
         ], 200);
     }
 
