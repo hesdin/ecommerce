@@ -47,8 +47,9 @@ class UserController extends Controller
     public function addToCart(Request $req)
     {
         $cart = Cart::where('customer_id', $req->user()->id)->first();
+        $p = Products::find($req->product_id);
 
-        if (Product::find($req->product_id)->stok > 0) {
+        if ($p->stok > 0) {
             $ci = new CartItem();
             if (!$cart) {
                 $c = new Cart();
@@ -157,7 +158,7 @@ class UserController extends Controller
             $oi->qty = $item->qty;
             $oi->save();
 
-            $product = Product::find($item->product_id);
+            $product = Products::find($item->product_id);
             if ($product->stok > 0) {
                 $product->stok = $product->stok - $item->qty;
                 $product->update();
@@ -188,7 +189,7 @@ class UserController extends Controller
         $data->update();
 
         foreach($data->item as $item) {
-            $p = Product::find($item->product_id);
+            $p = Products::find($item->product_id);
             $p->stok = $p->stok + $item->qty;
             $p->update();
         }
