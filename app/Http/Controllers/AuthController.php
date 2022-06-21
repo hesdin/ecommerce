@@ -71,7 +71,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'berhasil'
-        ]);
+        ], 200);
     }
 
     public function userRegister(Request $req)
