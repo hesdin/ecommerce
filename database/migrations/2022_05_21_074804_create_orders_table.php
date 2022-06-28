@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->text('alamat_kirim');
             $table->string('no_hp');
             $table->enum('status', ['Pending', 'Proses', 'Dikirim', 'Selesai', 'Batal']);
-            $table->int('total_harga');
+            $table->integer('total_harga');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('users')
