@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Products;
 use App\Models\Setting;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Str;
@@ -14,7 +15,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        $data = [
+            'produk' => Products::all()->count(),
+            'selesai' => Order::where('status', 'Selesai')->orWhere('status', 'Batal')->get()->count(),
+            'pending' => Order::where('status', 'Pending')->get()->count(),
+            'pesanan' => Order::whereDate('created_at', '>=', Carbon::now()->subDays(7))->orderBy('created_at', 'DESC')->limit(5)->get()
+        ];
+
+        return view('dashboard', $data);
     }
     public function customer()
     {
