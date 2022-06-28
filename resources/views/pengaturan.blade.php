@@ -31,26 +31,24 @@
                             </button>
                         </div>
 
-
-
                     </div>
                     <div class="card-body">
                         <h5>Data Rekening</h5>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="bank" class="form-label">Bank</label>
-                                <input type="email" class="form-control" id="bank" name="bank">
+                                <input type="email" class="form-control" id="bank" name="bank" value="{{ $bank->value }}" required>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="rekening" class="form-label">No. Rekening</label>
-                                <input type="email" class="form-control" id="rekening" name="rekening">
+                                <input type="email" class="form-control" id="rekening" name="norek" value="{{ $norek->value }}" required>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="pemilik" class="form-label">Pemilik Rekening</label>
-                            <input type="email" class="form-control" id="pemilik" name="pemilik">
+                            <input type="email" class="form-control" id="pemilik" name="pemilik" value="{{ $pemilik->value }}" required>
                         </div>
 
                         <hr>
@@ -58,7 +56,7 @@
                         <h5>Data Aplikasi</h5>
                         <div class="mb-3">
                             <label for="ongkir" class="form-label">Ongkos Kirim</label>
-                            <input type="email" class="form-control" id="ongkir" name="ongkir">
+                            <input type="email" class="form-control" id="ongkir" name="ongkir" value="{{ $ongkir->value }}" required>
                         </div>
                     </div>
                 </div>

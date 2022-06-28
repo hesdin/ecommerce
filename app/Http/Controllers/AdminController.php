@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Products;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -162,7 +163,13 @@ class AdminController extends Controller
 
     public function pengaturan()
     {
-        return view('pengaturan');
+        $data = [
+            'bank' => Setting::where('name', 'bank')->first(),
+            'norek' => Setting::where('name', 'norek')->first(),
+            'pemilik' => Setting::where('name', 'pemilik')->first(),
+            'ongkir' => Setting::where('name', 'ongkir')->first()
+        ];
+        return view('pengaturan', $data);
     }
 
     public function pengaturanSave(Request $req)

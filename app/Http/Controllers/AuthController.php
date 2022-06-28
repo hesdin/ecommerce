@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,15 @@ class AuthController extends Controller
             $a->email = "admin@localhost";
             $a->password = bcrypt('123');
             $a->save();
+        }
+        if (Setting::all()->count() < 4) {
+            Setting::truncate();
+            Setting::insert([
+                ['name' => 'bank', 'value' => 'BCA'],
+                ['name' => 'norek', 'value' => '123456789'],
+                ['name' => 'pemilik', 'value' => 'John Doe'],
+                ['name' => 'ongkir', 'value' => '10000'],
+            ]);
         }
         return view('auth.login');
     }
