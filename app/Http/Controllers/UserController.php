@@ -8,10 +8,27 @@ use App\Models\Favorite;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Products;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function pengaturan()
+    {
+        $bank = Setting::where('name', 'bank')->first();
+        $norek = Setting::where('name', 'norek')->first();
+        $pemilik = Setting::where('name', 'pemilik')->first();
+        $ongkir = Setting::where('name', 'ongkir')->first();
+
+        return response()->json([
+            'message' => 'berhasil',
+            'bank' => $bank,
+            'norek' => $norek,
+            'pemilik' => $pemilik,
+            'ongkir' => $ongkir
+        ], 200);
+    }
+
     public function products(Request $req)
     {
         if ($req->has('search')) {

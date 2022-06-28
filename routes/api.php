@@ -29,6 +29,9 @@ Route::group(['middleware' => 'auth:user'], function() {
             'user' => $req->user()
         ], 200);
     });
+
+    Route::get('/settings', [UserController::class, 'pengaturan']);
+
     Route::get('/products', [UserController::class, 'products']);
 
     // cart
