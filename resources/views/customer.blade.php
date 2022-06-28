@@ -45,9 +45,6 @@
                             <td>{{ Carbon\Carbon::parse($user->created_at)->isoFormat('D MMM YYYY') }}</td>
                             <td>
                                 <span>
-                                    <button class="btn btn-sm"><i class="bi bi-pencil-square text-primary"></i></button>
-                                </span>
-                                <span>
                                     <button class="btn btn-sm"><i class="bi bi-trash text-danger" onclick="hapus({{ $user->id }})"></i></button>
                                 </span>
 
