@@ -30,17 +30,10 @@
             </a>
         </li>
 
-        <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }}">
-            <a href="{{ route('admin') }}" class='sidebar-link'>
-                <i class="bi bi-person-fill"></i>
-                <span>Admin</span>
-            </a>
-        </li>
-
-        <li class="sidebar-item {{ request()->is('laporan') ? 'active' : '' }}">
-            <a href="{{ route('laporan') }}" class='sidebar-link'>
-                <i class="bi bi-file-earmark-text-fill"></i>
-                <span>Laporan</span>
+        <li class="sidebar-item {{ request()->segment(1) == 'pengaturan' ? 'active' : '' }}">
+            <a href="{{ route('pengaturan') }}" class='sidebar-link'>
+                <i class="bi bi-gear-fill"></i>
+                <span>Pengaturan</span>
             </a>
         </li>
 

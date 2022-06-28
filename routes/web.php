@@ -40,11 +40,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/orderan/{id}', [AdminController::class, 'orderanDetails'])->name('orderan.details');
     Route::post('/orderan/{id}', [AdminController::class, 'orderanUpdate'])->name('orderan.update');
 
-    // ADMIN
-    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-
-    // LAPORAN
-    Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
+    // PENGATURAN
+    Route::get('/pengaturan', [AdminController::class, 'pengaturan'])->name('pengaturan');
+    Route::post('/pengaturan', [AdminController::class, 'pengaturanSave'])->name('pengaturan-save');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

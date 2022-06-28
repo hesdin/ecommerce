@@ -160,9 +160,13 @@ class AdminController extends Controller
         return view('admin');
     }
 
-    // LAPORAN
-    public function laporan()
+    public function pengaturan()
     {
-        return view('laporan');
+        return view('pengaturan');
+    }
+
+    public function pengaturanSave(Request $req)
+    {
+        return redirect()->back()->with('success', 'Pengaturan berhasil disimpan');
     }
 }
