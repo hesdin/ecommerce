@@ -23,42 +23,54 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <form action="{{ route('pengaturan-save') }}" method="POST">
+                        @csrf
+                        <div class="card-header">
 
-                        <div class="clearfix">
-                            <button class="btn btn-sm btn-primary float-end" type="button">
-                                <span class="align-middle"><i class="bi bi-file-earmark-check"></i> Simpan Pengaturan</span>
-                            </button>
-                        </div>
-
-                    </div>
-                    <div class="card-body">
-                        <h5>Data Rekening</h5>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="bank" class="form-label">Bank</label>
-                                <input type="email" class="form-control" id="bank" name="bank" value="{{ $bank->value }}" required>
+                            <div class="clearfix">
+                                <button class="btn btn-sm btn-primary float-end" type="submit">
+                                    <span class="align-middle"><i class="bi bi-file-earmark-check"></i> Simpan
+                                        Pengaturan</span>
+                                </button>
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="rekening" class="form-label">No. Rekening</label>
-                                <input type="email" class="form-control" id="rekening" name="norek" value="{{ $norek->value }}" required>
+                        </div>
+                        <div class="card-body">
+                            <h5>Data Rekening</h5>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="bank" class="form-label">Bank</label>
+                                    <input type="text" class="form-control" id="bank" name="bank"
+                                        value="{{ $bank->value }}" required autocomplete="off">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="rekening" class="form-label">No. Rekening</label>
+                                    <input type="text" class="form-control" id="rekening" name="norek"
+                                        value="{{ $norek->value }}" required autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="pemilik" class="form-label">Pemilik Rekening</label>
+                                <input type="text" class="form-control" id="pemilik" name="pemilik"
+                                    value="{{ $pemilik->value }}" required autocomplete="off">
+                            </div>
+
+                            <hr>
+
+                            <h5>Data Aplikasi</h5>
+                            <div class="mb-3">
+                                <label for="ongkir" class="form-label">Ongkos Kirim</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="ongkir-prefix">Rp.</span>
+                                    <input type="text" class="form-control" id="ongkir" name="ongkir"
+                                        value="{{ $ongkir->value }}" required autocomplete="off" aria-label="ongkir" aria-describedby="ongkir-prefix">
+                                </div>
                             </div>
                         </div>
+                    </form>
 
-                        <div class="mb-3">
-                            <label for="pemilik" class="form-label">Pemilik Rekening</label>
-                            <input type="email" class="form-control" id="pemilik" name="pemilik" value="{{ $pemilik->value }}" required>
-                        </div>
-
-                        <hr>
-
-                        <h5>Data Aplikasi</h5>
-                        <div class="mb-3">
-                            <label for="ongkir" class="form-label">Ongkos Kirim</label>
-                            <input type="email" class="form-control" id="ongkir" name="ongkir" value="{{ $ongkir->value }}" required>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-6 text-center py-5">

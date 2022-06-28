@@ -174,6 +174,14 @@ class AdminController extends Controller
 
     public function pengaturanSave(Request $req)
     {
+        foreach ($req->keys() as $key) {
+            if ($key != '_token') {
+                $s = Setting::where('name', $key)->first();
+                $s->value = $req->$key;
+                $s->update();
+            }
+        }
+
         return redirect()->back()->with('success', 'Pengaturan berhasil disimpan');
     }
 }
