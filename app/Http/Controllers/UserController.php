@@ -22,10 +22,10 @@ class UserController extends Controller
 
         return response()->json([
             'message' => 'berhasil',
-            'bank' => $bank,
-            'norek' => $norek,
-            'pemilik' => $pemilik,
-            'ongkir' => $ongkir
+            'bank' => $bank->value,
+            'norek' => $norek->value,
+            'pemilik' => $pemilik->value,
+            'ongkir' => $ongkir->value
         ], 200);
     }
 
@@ -90,7 +90,6 @@ class UserController extends Controller
                 }
             }
         }
-
 
         $count = Cart::where('customer_id', $req->user()->id)->first()->item()->count();
 
