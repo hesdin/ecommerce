@@ -47,7 +47,7 @@ class UserController extends Controller
         $keranjang = Cart::where('customer_id', $req->user()->id)->first();
 
         return response()->json([
-            'items' => $keranjang->item
+            'items' => $keranjang ? $keranjang->item : []
         ]);
     }
 
