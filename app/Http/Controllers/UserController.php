@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Favorite;
@@ -245,6 +246,23 @@ class UserController extends Controller
         return response()->json([
             'message' => 'berhasil',
             'favorites' => $favorites,
+        ], 200);
+    }
+
+    public function updateProfile(Request $req)
+    {
+        $c = User::find($req->user()->id);
+        $c->name = $req->name;
+        $c->email = $req->email;
+        if ($req->password) {
+            $c->password = bcrypt($req->password);
+        }
+        $c->phone = $req->phone;
+        $c->update();
+
+        return response()->json([
+            'message' => 'berhasil',
+            'user' => $req->user()
         ], 200);
     }
 }

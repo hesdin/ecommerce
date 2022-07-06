@@ -49,5 +49,8 @@ Route::group(['middleware' => 'auth:user'], function() {
     Route::get('/favorites', [UserController::class, 'favorites']);
     Route::post('/favorite', [UserController::class, 'favoriteAction']);
 
+    Route::post('update-profile', [UserController::class, 'updateProfile']);
+
+
     Route::get('/logout', [AuthController::class, 'userLogout']);
 });
