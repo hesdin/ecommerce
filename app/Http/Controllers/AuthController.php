@@ -70,7 +70,7 @@ class AuthController extends Controller
             ], 200);
         }
         return response()->json([
-            'message' => 'Username atau Password salah',
+            'message' => 'Email atau Password salah',
         ], 401);
 
     }
